@@ -1,6 +1,6 @@
 import { app, BrowserWindow } from 'electron';
 
-let mainWindow: Electron.BrowserWindow;
+let mainWindow: Electron.BrowserWindow | null = null;
 
 const createWindow = () => {
     mainWindow = new BrowserWindow({

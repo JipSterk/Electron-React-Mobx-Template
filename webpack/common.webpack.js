@@ -1,17 +1,11 @@
-// import * as path from 'path';
-// import * as webpack from 'webpack';
-// import * as HtmlWebpackPlugin from 'html-webpack-plugin';
-// import * as webpackMerge from 'webpack-merge';
-
 const path = require('path');
 const webpack = require('webpack');
-const webpackMerge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpackMerge = require('webpack-merge');
 
-// const commonConfig: webpack.Configuration = {
 const commonConfig = {
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve('dist'),
         filename: '[name].js'
     },
     resolve: {
@@ -35,27 +29,27 @@ const commonConfig = {
     }
 }
 
-// const mainConfig: webpack.Configuration = webpackMerge(commonConfig, {
-const mainConfig = webpackMerge(commonConfig, {
+const commonMainConfig = {
     target: 'electron-main',
     entry: {
         main: './src/main.ts'
     }
-});
+}
 
-const renderConfig = webpackMerge(commonConfig, {
+const commonRenderConfig = {
     target: 'electron-renderer',
     entry: {
         renderer: './src/index.tsx'
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, 'src', 'index.html')
+            template: path.resolve('src', 'index.html')
         })
     ]
-})
+}
 
-module.exports = [
-    mainConfig,
-    renderConfig
-]
+module.exports = {
+    commonConfig: commonConfig,
+    commonMainConfig: commonMainConfig,
+    commonRenderConfig: commonRenderConfig
+}

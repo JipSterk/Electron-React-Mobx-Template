@@ -1,4 +1,6 @@
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
 
-ReactDom.render(<div>Hey</div>, document.getElementById('root'));
+import { Main } from './components/main';
+
+ReactDom.render(<Main />, document.getElementById('root'));
