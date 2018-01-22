@@ -3,8 +3,6 @@ const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 const common = require('./common.webpack');
 
-const ENV = process.env.NODE_ENV = process.env.ENV = 'development';
-
 const developmentConfig = webpackMerge(common.commonConfig, {
     devtool: 'cheap-module-eval-source-map',
 });
