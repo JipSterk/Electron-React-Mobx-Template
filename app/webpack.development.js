@@ -1,7 +1,6 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
-const common = require('./common.webpack');
+const common = require('./webpack.common');
 
 const developmentConfig = webpackMerge(common.commonConfig, {
     devtool: 'cheap-module-eval-source-map',
@@ -20,10 +19,7 @@ const developmentRenderConfig = webpackMerge(developmentConfig, common.commonRen
         ]
     },
     plugins: [
-        new ExtractTextPlugin('[name].css'),
-        new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify(ENV)
-        })
+        new ExtractTextPlugin('[name].css')
     ]
 });
 

@@ -1,7 +1,6 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
-const common = require('./common.webpack');
+const common = require('./webpack.common');
 
 const productionConfig = webpackMerge(common.commonConfig, {
 });
@@ -22,10 +21,7 @@ const productionRenderConfig = webpackMerge(productionConfig, common.commonRende
         ]
     },
     plugins: [
-        new ExtractTextPlugin('[name].css'),
-        new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify(ENV)
-        })
+        new ExtractTextPlugin('[name].css')
     ]
 });
 

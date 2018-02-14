@@ -1,8 +1,11 @@
 .vs/
 .vscode/
 
-node_modules
-dist
+node_modules/
+dist/
+out/
+
+app/node_modules/
 
 .awcache
 .DS_Store

@@ -1,19 +1,25 @@
 {
-    "compileOnSave": false,
     "compilerOptions": {
         "module": "commonjs",
         "moduleResolution": "node",
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true,
         "target": "es2017",
         "noImplicitReturns": true,
-        "jsx": "react",
+        "noFallthroughCasesInSwitch": true,
+        "noUnusedLocals": true,
         "sourceMap": true,
+        "jsx": "react",
         "strict": true,
-        "outDir": "dist"
+        "outDir": "./out"
     },
+    "include": [
+        "app/**/*.ts",
+        "app/**/*.tsx"
+    ],
     "exclude": [
+        "app/node_modules",
         "node_modules",
-        "dist"
-    ]
+        "dist",
+        "out"
+    ],
+    "compileOnSave": false
 }
