@@ -10,6 +10,15 @@ const developmentMainConfig = webpackMerge(developmentConfig, common.commonMainC
 });
 
 const developmentRenderConfig = webpackMerge(developmentConfig, common.commonRenderConfig, {
+    entry: {
+        renderer: [
+            'webpack-hot-middleware/client?path=http://localhost:3000/__webpack_hmr',
+            common.commonRenderConfig.entry.renderer,
+        ],
+    },
+    output: {
+        publicPath: 'http://localhost:3000/build/',
+    },
     module: {
         rules: [
             {
