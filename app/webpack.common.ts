@@ -1,11 +1,12 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+import * as CleanWebpackPlugin from 'clean-webpack-plugin';
+import * as HtmlWebpackPlugin from 'html-webpack-plugin';
+import * as path from 'path';
+import * as webpack from 'webpack';
 
 const outputDir = 'out';
 const externals = ['7zip'];
 
-const commonConfig = {
+export const commonConfig: webpack.Configuration = {
     externals: externals,
     output: {
         path: path.resolve(__dirname, '..', outputDir),
@@ -36,14 +37,14 @@ const commonConfig = {
     }
 }
 
-const commonMainConfig = {
+export const commonMainConfig: webpack.Configuration = {
     target: 'electron-main',
     entry: {
         main: path.resolve(__dirname, 'src/main-process/main.ts')
     }
 }
 
-const commonRenderConfig = {
+export const commonRenderConfig: webpack.Configuration = {
     target: 'electron-renderer',
     entry: {
         renderer: path.resolve(__dirname, 'src/ui/index.tsx')
@@ -53,10 +54,4 @@ const commonRenderConfig = {
             template: path.resolve(__dirname, 'static', 'index.html')
         })
     ]
-}
-
-module.exports = {
-    commonConfig,
-    commonMainConfig,
-    commonRenderConfig,
 }

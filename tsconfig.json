@@ -13,7 +13,8 @@
     },
     "include": [
         "app/**/*.ts",
-        "app/**/*.tsx"
+        "app/**/*.tsx",
+        "app/webpack.*.ts"
     ],
     "exclude": [
         "app/node_modules",
