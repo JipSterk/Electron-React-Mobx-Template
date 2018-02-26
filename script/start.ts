@@ -5,7 +5,7 @@ import * as webpack from 'webpack';
 import * as webpackDevMiddleware from 'webpack-dev-middleware';
 import * as webpackHotMiddleware from 'webpack-hot-middleware';
 
-import configs from '../app/webpack.development';
+import configs = require('../app/webpack.development');
 
 let binaryPath = '';
 
@@ -40,26 +40,27 @@ const startApp = (): void => {
 if (process.env.NODE_ENV === 'production') {
     startApp();
 }
+else {
+    const developmentRenderConfig = configs[1];
 
-const [developmentRenderConfig] = configs;
+    const server = express();
+    const compiler = webpack(developmentRenderConfig);
+    const port = Number.parseInt(process.env.PORT) || 3000;
 
-const server = express();
-const compiler = webpack(developmentRenderConfig);
-const port = Number.parseInt(process.env.PORT) || 3000;
+    server.use(webpackDevMiddleware(compiler, {
+        publicPath: developmentRenderConfig.output.publicPath,
+    }));
 
-server.use(webpackDevMiddleware(compiler, {
-    publicPath: developmentRenderConfig.output.publicPath,
-}));
+    server.use(webpackHotMiddleware(compiler));
 
-server.use(webpackHotMiddleware(compiler));
+    server.listen(port, 'localhost', (error: Error) => {
+        if (error) {
+            console.log(error);
+            process.exit(1);
+            return;
+        }
 
-server.listen(port, 'localhost', (error: Error) => {
-    if (error) {
-        console.log(error);
-        process.exit(1);
-        return;
-    }
-
-    console.log(`Server running at http://localhost:${port}`);
-    startApp();
-});
+        console.log(`Server running at http://localhost:${port}`);
+        startApp();
+    });
+}
