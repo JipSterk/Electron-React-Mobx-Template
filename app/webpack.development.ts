@@ -1,4 +1,3 @@
-import * as ExtractTextPlugin from 'extract-text-webpack-plugin';
 import * as webpack from 'webpack';
 import * as webpackMerge from 'webpack-merge';
 
@@ -30,7 +29,7 @@ const developmentRenderConfig: webpack.Configuration = webpackMerge(developmentC
         ]
     },
     plugins: [
-        new ExtractTextPlugin('[name].css')
+        new webpack.HotModuleReplacementPlugin()
     ]
 });
 
