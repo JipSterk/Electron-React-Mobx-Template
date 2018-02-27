@@ -7,6 +7,8 @@ type PackageLookup = {
     [key: string]: string
 }
 
+const isPublishableBuild = process.env.NODE_ENV !== 'development';
+
 const projectRoot = path.join(__dirname, '..');
 const outRoot = path.join(projectRoot, 'out');
 
@@ -30,18 +32,24 @@ const copyDependencies = (): void => {
     const oldDevDependencies = originalPackage.devDependencies;
     const newDevDependencies: PackageLookup = {}
 
-    Object.keys(oldDevDependencies).forEach(name => {
-        const spec = oldDevDependencies[name];
-        if (externals.indexOf(name) !== -1) {
-            newDevDependencies[name] = spec;
-        }
-    });
+    if (!isPublishableBuild) {
+        Object.keys(oldDevDependencies).forEach(name => {
+            const spec = oldDevDependencies[name];
+            if (externals.indexOf(name) !== -1) {
+                newDevDependencies[name] = spec;
+            }
+        });
+    }
 
     const updatedPackage = Object.assign({}, originalPackage, {
         productName: 'electronreactmobxtemplate',
         dependencies: newDependencies,
         devDependencies: newDevDependencies,
     });
+
+    if (isPublishableBuild) {
+        delete updatedPackage.devDependencies;
+    }
 
     fs.writeFileSync(path.join(outRoot, 'package.json'), JSON.stringify(updatedPackage));
 
@@ -50,6 +58,16 @@ const copyDependencies = (): void => {
     if (Object.keys(newDependencies).length || Object.keys(newDevDependencies).length) {
         console.log('Installing dependencies via yarn…')
         cp.execSync('yarn install', { cwd: outRoot, env: process.env });
+    }
+
+    if (!isPublishableBuild) {
+        console.log('Installing 7zip (dependency for electron-devtools-installer)')
+
+        const sevenZipSource = path.resolve(projectRoot, 'app/node_modules/7zip')
+        const sevenZipDestination = path.resolve(outRoot, 'node_modules/7zip')
+
+        fs.mkdirpSync(sevenZipDestination)
+        fs.copySync(sevenZipSource, sevenZipDestination)
     }
 }
 

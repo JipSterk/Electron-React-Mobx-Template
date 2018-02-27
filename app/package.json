@@ -13,6 +13,9 @@
         "react-dom": "^16.2.0"
     },
     "devDependencies": {
+        "devtron": "^1.4.0",
+        "electron-debug": "^1.5.0",
+        "electron-devtools-installer": "^2.2.3",
         "style-loader": "^0.20.1"
     }
 }
