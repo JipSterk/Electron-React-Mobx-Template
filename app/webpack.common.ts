@@ -2,11 +2,16 @@ import * as CleanWebpackPlugin from 'clean-webpack-plugin';
 import * as HtmlWebpackPlugin from 'html-webpack-plugin';
 import * as path from 'path';
 import * as webpack from 'webpack';
+import * as merge from 'webpack-merge';
 
 const outputDir = 'out';
-const externals = ['7zip'];
+export const externals = ['7zip'];
 
-export const commonConfig: webpack.Configuration = {
+if(process.env.NODE_ENV === 'development') {
+    externals.push('devtron');
+}
+
+const commonConfig: webpack.Configuration = {
     externals: externals,
     output: {
         path: path.resolve(__dirname, '..', outputDir),
@@ -37,21 +42,21 @@ export const commonConfig: webpack.Configuration = {
     }
 }
 
-export const commonMainConfig: webpack.Configuration = {
+export const commonMainConfig: webpack.Configuration = merge(commonConfig, {
     target: 'electron-main',
     entry: {
-        main: path.resolve(__dirname, 'src/main-process/main.ts')
+        main: path.resolve(__dirname, 'src/main-process/main')
     }
-}
+});
 
-export const commonRenderConfig: webpack.Configuration = {
+export const commonRenderConfig: webpack.Configuration = merge(commonConfig, {
     target: 'electron-renderer',
     entry: {
-        renderer: path.resolve(__dirname, 'src/ui/index.tsx')
+        renderer: path.resolve(__dirname, 'src/ui/index')
     },
     plugins: [
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'static', 'index.html')
         })
     ]
-}
+});

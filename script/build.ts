@@ -1,7 +1,9 @@
-import * as path from 'path';
-import * as fs from 'fs-extra';
-import * as packager from 'electron-packager';
 import * as cp from 'child_process';
+import * as packager from 'electron-packager';
+import * as fs from 'fs-extra';
+import * as path from 'path';
+
+import { externals } from '../app/webpack.common';
 
 type PackageLookup = {
     [key: string]: string
@@ -17,8 +19,7 @@ const getDistRoot = (): string => path.join(projectRoot, 'dist');
 const copyDependencies = (): void => {
     const originalPackage = require(path.join(projectRoot, 'app', 'package.json'));
 
-    const commonConfig = require(path.resolve(__dirname, '../app/webpack.common'));
-    const externals = commonConfig.commonConfig.externals;
+
     const oldDependencies = originalPackage.dependencies;
     const newDependencies: PackageLookup = {}
 

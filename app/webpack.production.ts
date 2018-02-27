@@ -4,13 +4,14 @@ import * as webpackMerge from 'webpack-merge';
 
 import * as common from './webpack.common';
 
-const productionConfig: webpack.Configuration = webpackMerge(common.commonConfig, {
+const config: webpack.Configuration = {
+    devtool: 'source-map'
+}
+
+const productionMainConfig: webpack.Configuration = webpackMerge(config, common.commonMainConfig, {
 });
 
-const productionMainConfig: webpack.Configuration = webpackMerge(productionConfig, common.commonMainConfig, {
-});
-
-const productionRenderConfig: webpack.Configuration = webpackMerge(productionConfig, common.commonRenderConfig, {
+const productionRenderConfig: webpack.Configuration = webpackMerge(config, common.commonRenderConfig, {
     module: {
         rules: [
             {
@@ -31,4 +32,4 @@ const productionRenderConfig: webpack.Configuration = webpackMerge(productionCon
 export =[
     productionMainConfig,
     productionRenderConfig
-]
+];
