@@ -9,7 +9,11 @@ const getDistPath = (): string => path.join(`${getDistRoot()}`, 'electronreactmo
 
 const outputDir = path.join(getDistPath(), '..', 'installer');
 
-const packageWindows = (): void => {
+if(process.platform === 'win32') {
+    packageWindows();
+}
+
+function packageWindows(): void {
     const options: electronInstaller.Options = {
         name: 'electronreactmobxtemplate.nupkg',
         appDirectory: getDistPath(),
@@ -29,8 +33,4 @@ const packageWindows = (): void => {
             console.error(`Error packaging: ${error}`);
             process.exit(1);
         });
-}
-
-if(process.platform === 'win32') {
-    packageWindows();
 }

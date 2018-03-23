@@ -16,9 +16,19 @@ const outRoot = path.join(projectRoot, 'out');
 
 const getDistRoot = (): string => path.join(projectRoot, 'dist');
 
-const copyDependencies = (): void => {
-    const originalPackage = require(path.join(projectRoot, 'app', 'package.json'));
+copyDependencies();
 
+packageApp((err: Error, appPaths: string | string[]): void => {
+    if (err) {
+        console.error(err);
+        process.exit(1);
+    } else {
+        console.log(`Built to ${appPaths}`);
+    }
+});
+
+function copyDependencies(): void {
+    const originalPackage = require(path.join(projectRoot, 'app', 'package.json'));
 
     const oldDependencies = originalPackage.dependencies;
     const newDependencies: PackageLookup = {}
@@ -57,22 +67,22 @@ const copyDependencies = (): void => {
     fs.removeSync(path.resolve(outRoot, 'node_modules'));
 
     if (Object.keys(newDependencies).length || Object.keys(newDevDependencies).length) {
-        console.log('Installing dependencies via yarn…')
+        console.log('Installing dependencies via yarn…');
         cp.execSync('yarn install', { cwd: outRoot, env: process.env });
     }
 
     if (!isPublishableBuild) {
-        console.log('Installing 7zip (dependency for electron-devtools-installer)')
+        console.log('Installing 7zip (dependency for electron-devtools-installer)');
 
-        const sevenZipSource = path.resolve(projectRoot, 'app/node_modules/7zip')
-        const sevenZipDestination = path.resolve(outRoot, 'node_modules/7zip')
+        const sevenZipSource = path.resolve(projectRoot, 'app/node_modules/7zip');
+        const sevenZipDestination = path.resolve(outRoot, 'node_modules/7zip');
 
-        fs.mkdirpSync(sevenZipDestination)
-        fs.copySync(sevenZipSource, sevenZipDestination)
+        fs.mkdirpSync(sevenZipDestination);
+        fs.copySync(sevenZipSource, sevenZipDestination);
     }
 }
 
-const packageApp = (callback: (error: Error | null, appPaths: string | string[]) => void): void => {
+function packageApp(callback: (error: Error | null, appPaths: string | string[]) => void): void {
     const options: packager.Options = {
         overwrite: true,
         platform: 'win32',
@@ -97,14 +107,3 @@ const packageApp = (callback: (error: Error | null, appPaths: string | string[])
         }
     });
 }
-
-copyDependencies();
-
-packageApp((err: Error, appPaths: string | string[]) => {
-    if (err) {
-        console.error(err)
-        process.exit(1)
-    } else {
-        console.log(`Built to ${appPaths}`)
-    }
-})

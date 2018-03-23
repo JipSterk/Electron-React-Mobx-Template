@@ -16,7 +16,7 @@ if (process.platform === 'win32') {
     binaryPath = path.join(getDistRoot(), 'electronreactmobxtemplate-win32-x64', 'electronreactmobxtemplate.exe');
 }
 
-const startApp = (): void => {
+function startApp(): void {
     const options: SpawnOptions = {
         stdio: 'inherit'
     }
@@ -53,7 +53,7 @@ else {
 
     server.use(webpackHotMiddleware(compiler));
 
-    server.listen(port, 'localhost', (error: Error) => {
+    server.listen(port, 'localhost', (error?: Error): void => {
         if (error) {
             console.log(error);
             process.exit(1);

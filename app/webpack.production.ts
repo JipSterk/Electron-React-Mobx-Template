@@ -5,6 +5,7 @@ import * as webpackMerge from 'webpack-merge';
 import * as common from './webpack.common';
 
 const config: webpack.Configuration = {
+    mode: 'production',
     devtool: 'source-map'
 }
 
