@@ -45,10 +45,10 @@ else {
 
     const server = express();
     const compiler = webpack(developmentRenderConfig);
-    const port = Number.parseInt(process.env.PORT) || 3000;
+    const port = Number.parseInt(process.env.PORT!) || 3000;
 
     server.use(webpackDevMiddleware(compiler, {
-        publicPath: developmentRenderConfig.output.publicPath,
+        publicPath: developmentRenderConfig!.output!.publicPath!,
     }));
 
     server.use(webpackHotMiddleware(compiler));

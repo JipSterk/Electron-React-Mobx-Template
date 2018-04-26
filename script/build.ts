@@ -18,9 +18,9 @@ const getDistRoot = (): string => path.join(projectRoot, 'dist');
 
 copyDependencies();
 
-packageApp((err: Error, appPaths: string | string[]): void => {
-    if (err) {
-        console.error(err);
+packageApp((error: Error | null, appPaths: string | string[]): void => {
+    if (error) {
+        console.error(error);
         process.exit(1);
     } else {
         console.log(`Built to ${appPaths}`);
