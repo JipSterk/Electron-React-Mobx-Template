@@ -4,8 +4,8 @@ import * as path from 'path';
 import * as webpack from 'webpack';
 import * as merge from 'webpack-merge';
 
-const outputDir = 'out';
-export const externals = ['7zip'];
+const outputDir: string = 'out';
+export const externals: string[] = ['7zip'];
 
 if(process.env.NODE_ENV === 'development') {
     externals.push('devtron');

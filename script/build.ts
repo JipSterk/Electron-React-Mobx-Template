@@ -4,17 +4,22 @@ import * as fs from 'fs-extra';
 import * as path from 'path';
 
 import { externals } from '../app/webpack.common';
+import { getDistRoot } from './dist-info';
 
 type PackageLookup = {
     [key: string]: string
 }
 
-const isPublishableBuild = process.env.NODE_ENV !== 'development';
+type Package = {
+    productName: string,
+    dependencies: PackageLookup,
+    devDependencies: PackageLookup
+}
 
-const projectRoot = path.join(__dirname, '..');
-const outRoot = path.join(projectRoot, 'out');
+const isPublishableBuild: boolean = process.env.NODE_ENV !== 'development';
 
-const getDistRoot = (): string => path.join(projectRoot, 'dist');
+const projectRoot: string = path.join(__dirname, '..');
+const outRoot: string = path.join(projectRoot, 'out');
 
 copyDependencies();
 
@@ -28,31 +33,31 @@ packageApp((error: Error | null, appPaths: string | string[]): void => {
 });
 
 function copyDependencies(): void {
-    const originalPackage = require(path.join(projectRoot, 'app', 'package.json'));
+    const originalPackage: Package = require(path.join(projectRoot, 'app', 'package.json'));
 
-    const oldDependencies = originalPackage.dependencies;
+    const oldDependencies: PackageLookup = originalPackage.dependencies;
     const newDependencies: PackageLookup = {}
 
-    Object.keys(oldDependencies).forEach(name => {
-        const spec = oldDependencies[name];
+    Object.keys(oldDependencies).forEach((name: string): void => {
+        const spec: string = oldDependencies[name];
         if (externals.indexOf(name) !== -1) {
             newDependencies[name] = spec;
         }
     });
 
-    const oldDevDependencies = originalPackage.devDependencies;
+    const oldDevDependencies: PackageLookup = originalPackage.devDependencies;
     const newDevDependencies: PackageLookup = {}
 
     if (!isPublishableBuild) {
-        Object.keys(oldDevDependencies).forEach(name => {
-            const spec = oldDevDependencies[name];
+        Object.keys(oldDevDependencies).forEach((name: string): void => {
+            const spec: string = oldDevDependencies[name];
             if (externals.indexOf(name) !== -1) {
                 newDevDependencies[name] = spec;
             }
         });
     }
 
-    const updatedPackage = Object.assign({}, originalPackage, {
+    const updatedPackage: Package = Object.assign({}, originalPackage, {
         productName: 'electronreactmobxtemplate',
         dependencies: newDependencies,
         devDependencies: newDevDependencies,
@@ -74,8 +79,8 @@ function copyDependencies(): void {
     if (!isPublishableBuild) {
         console.log('Installing 7zip (dependency for electron-devtools-installer)');
 
-        const sevenZipSource = path.resolve(projectRoot, 'app/node_modules/7zip');
-        const sevenZipDestination = path.resolve(outRoot, 'node_modules/7zip');
+        const sevenZipSource: string = path.resolve(projectRoot, 'app/node_modules/7zip');
+        const sevenZipDestination: string = path.resolve(outRoot, 'node_modules/7zip');
 
         fs.mkdirpSync(sevenZipDestination);
         fs.copySync(sevenZipSource, sevenZipDestination);

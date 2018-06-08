@@ -1,22 +1,19 @@
 import * as electronInstaller from 'electron-winstaller';
 import * as path from 'path';
 
-const projectRoot = path.join(__dirname, '..');
+import { getDistPath } from './dist-info';
 
-const getDistRoot = (): string => path.join(projectRoot, 'dist');
+const distPath: string = getDistPath();
+const outputDir: string = path.join(distPath, '..', 'installer');
 
-const getDistPath = (): string => path.join(`${getDistRoot()}`, 'electronreactmobxtemplate-win32-x64');
-
-const outputDir = path.join(getDistPath(), '..', 'installer');
-
-if(process.platform === 'win32') {
+if (process.platform === 'win32') {
     packageWindows();
 }
 
 function packageWindows(): void {
     const options: electronInstaller.Options = {
         name: 'electronreactmobxtemplate.nupkg',
-        appDirectory: getDistPath(),
+        appDirectory: distPath,
         outputDirectory: outputDir,
         authors: 'YOUR COMPANY NAME',
         description: 'SOME DESCRIPTION',
@@ -29,7 +26,7 @@ function packageWindows(): void {
     electronInstaller.createWindowsInstaller(options)
         .then((): void => {
             console.log(`Installers created in ${outputDir}`);
-        }).catch((error: Error) =>{
+        }).catch((error: Error): void => {
             console.error(`Error packaging: ${error}`);
             process.exit(1);
         });

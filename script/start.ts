@@ -1,35 +1,19 @@
-import { spawn, SpawnOptions } from 'child_process';
+import { ChildProcess } from 'child_process';
 import * as express from 'express';
-import * as path from 'path';
 import * as webpack from 'webpack';
 import * as webpackDevMiddleware from 'webpack-dev-middleware';
 import * as webpackHotMiddleware from 'webpack-hot-middleware';
 
 import configs = require('../app/webpack.development');
-
-let binaryPath = '';
-
-const projectRoot = path.join(__dirname, '..');
-const getDistRoot = (): string => path.join(projectRoot, 'dist');
-
-if (process.platform === 'win32') {
-    binaryPath = path.join(getDistRoot(), 'electronreactmobxtemplate-win32-x64', 'electronreactmobxtemplate.exe');
-}
+import { run } from './run';
 
 function startApp(): void {
-    const options: SpawnOptions = {
-        stdio: 'inherit'
-    }
-
-    options.env = Object.assign(options.env || {}, process.env, {
-        NODE_ENV: 'development'
-    });
-
-    const runningApp = spawn(binaryPath, [], options);
+    const runningApp: ChildProcess | null = run({ stdio: 'inherit' });
 
     if (!runningApp) {
         console.log('Couldn\'t launch app. Try building it');
         process.exit(1);
+        return;
     }
 
     runningApp.on('close', (): void => {
@@ -41,11 +25,11 @@ if (process.env.NODE_ENV === 'production') {
     startApp();
 }
 else {
-    const developmentRenderConfig = configs[1];
+    const developmentRenderConfig: webpack.Configuration = configs[1];
 
-    const server = express();
-    const compiler = webpack(developmentRenderConfig);
-    const port = Number.parseInt(process.env.PORT!) || 3000;
+    const server: express.Application = express();
+    const compiler: webpack.Compiler = webpack(developmentRenderConfig);
+    const port: number = Number.parseInt(process.env.PORT!) || 3000;
 
     server.use(webpackDevMiddleware(compiler, {
         publicPath: developmentRenderConfig!.output!.publicPath!,
