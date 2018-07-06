@@ -12,13 +12,13 @@ const createWindow = (): void => {
     mainWindow.loadURL(`file://${__dirname}/index.html`);
 
     if (process.env.NODE_ENV === 'development') {
-        const installer = require('electron-devtools-installer');
+        const { default: installExtension, REACT_DEVELOPER_TOOLS, MOBX_DEVTOOLS, REACT_PERF } = require('electron-devtools-installer');
         require('electron-debug')({ showDevTools: true });
-        const extensions = ['REACT_DEVELOPER_TOOLS', 'REACT_PERF'];
+        const extensions: string[] = [REACT_DEVELOPER_TOOLS, MOBX_DEVTOOLS, REACT_PERF];
 
         for (const extension of extensions) {
             try {
-                installer.default(installer[extension]);
+                installExtension(extension);
             } catch (error) {
             }
         }
