@@ -23,14 +23,7 @@ const outRoot: string = path.join(projectRoot, 'out');
 
 copyDependencies();
 
-packageApp((error: Error | null, appPaths: string | string[]): void => {
-    if (error) {
-        console.error(error);
-        process.exit(1);
-    } else {
-        console.log(`Built to ${appPaths}`);
-    }
-});
+packageApp();
 
 function copyDependencies(): void {
     const originalPackage: Package = require(path.join(projectRoot, 'app', 'package.json'));
@@ -38,23 +31,23 @@ function copyDependencies(): void {
     const oldDependencies: PackageLookup = originalPackage.dependencies;
     const newDependencies: PackageLookup = {}
 
-    Object.keys(oldDependencies).forEach((name: string): void => {
+    for (const name of Object.keys(oldDependencies)) {
         const spec: string = oldDependencies[name];
         if (externals.indexOf(name) !== -1) {
             newDependencies[name] = spec;
         }
-    });
+    }
 
     const oldDevDependencies: PackageLookup = originalPackage.devDependencies;
     const newDevDependencies: PackageLookup = {}
 
     if (!isPublishableBuild) {
-        Object.keys(oldDevDependencies).forEach((name: string): void => {
+        for (const name of Object.keys(oldDevDependencies)) {
             const spec: string = oldDevDependencies[name];
             if (externals.indexOf(name) !== -1) {
                 newDevDependencies[name] = spec;
             }
-        });
+        }
     }
 
     const updatedPackage: Package = Object.assign({}, originalPackage, {
@@ -87,7 +80,7 @@ function copyDependencies(): void {
     }
 }
 
-function packageApp(callback: (error: Error | null, appPaths: string | string[]) => void): void {
+async function packageApp(): Promise<void> {
     const options: packager.Options = {
         overwrite: true,
         platform: 'win32',
@@ -103,12 +96,11 @@ function packageApp(callback: (error: Error | null, appPaths: string | string[])
         ],
     }
 
-    packager(options, (error: Error, appPaths: string | string[]): void => {
-        if (error) {
-            callback(error, appPaths);
-        }
-        else {
-            callback(null, appPaths);
-        }
-    });
+    try {
+        const appPaths: string | string[] = await packager(options);
+        console.log(`Built to ${appPaths}`);
+    } catch (error) {
+        console.error(error);
+        process.exit(1);
+    }
 }

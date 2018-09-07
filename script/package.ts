@@ -10,7 +10,7 @@ if (process.platform === 'win32') {
     packageWindows();
 }
 
-function packageWindows(): void {
+async function packageWindows(): Promise<void> {
     const options: electronInstaller.Options = {
         name: 'electronreactmobxtemplate.nupkg',
         appDirectory: distPath,
@@ -23,11 +23,11 @@ function packageWindows(): void {
         setupMsi: 'electronreactmobxtemplate Setup.msi',
     }
 
-    electronInstaller.createWindowsInstaller(options)
-        .then((): void => {
-            console.log(`Installers created in ${outputDir}`);
-        }).catch((error: Error): void => {
-            console.error(`Error packaging: ${error}`);
-            process.exit(1);
-        });
+    try {
+        await electronInstaller.createWindowsInstaller(options);
+        console.log(`Installers created in ${outputDir}`);
+    } catch (error) {
+        console.log(`Error packaging: ${error}`);
+        process.exit(1);
+    }
 }

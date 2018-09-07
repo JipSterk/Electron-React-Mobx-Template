@@ -1,4 +1,4 @@
-import * as ExtractTextPlugin from 'extract-text-webpack-plugin';
+import * as MiniCSSExtractPlugin from 'mini-css-extract-plugin';
 import * as webpack from 'webpack';
 import * as webpackMerge from 'webpack-merge';
 
@@ -17,15 +17,14 @@ const productionRenderConfig: webpack.Configuration = webpackMerge(config, commo
         rules: [
             {
                 test: /\.scss$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: ['css-loader', 'sass-loader']
-                })
+                use: [MiniCSSExtractPlugin.loader, 'css-loader', 'sass-loader']
             }
         ]
     },
     plugins: [
-        new ExtractTextPlugin('[name].css')
+        new MiniCSSExtractPlugin({
+            filename: '[name].css'
+        })
     ]
 });
 
