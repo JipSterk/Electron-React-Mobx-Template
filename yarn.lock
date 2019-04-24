@@ -43,10 +43,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/electron-winstaller@2.6.1":
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/@types/electron-winstaller/-/electron-winstaller-2.6.1.tgz#7acd7956bfe1a9e89602a7bb130384dd55f15508"
-  integrity sha512-wTClrMqgirmkliX3cJgcXU9Hbwj5mMM71+C2p/LfDt0xQfVZvK7KmdFdcxeeFNtPykgGVR8IABgSkHzgH4On1Q==
+"@types/electron-winstaller@2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@types/electron-winstaller/-/electron-winstaller-2.6.2.tgz#bdfe0f56f954036015ec77331a657762e06d97f2"
+  integrity sha512-Wl6gcuqMz4sXaYh8ESGf4+pbmjOQhuZsK/Q4XquF3JzP7d/1DXtYnkxi8ESGaKmtYG3QiABek2zjFkAsuhjF2w==
 
 "@types/express-serve-static-core@*":
   version "4.16.3"
