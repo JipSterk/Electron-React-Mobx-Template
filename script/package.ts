@@ -1,12 +1,25 @@
+import * as child_process from "child_process";
 import * as electronInstaller from "electron-winstaller";
 import * as path from "path";
-import { getDistPath } from "./dist-info";
+import { getDistPath, getMacOSZipPath } from "./dist-info";
 
 const distPath: string = getDistPath();
 const outputDir: string = path.join(distPath, "..", "installer");
 
+if (process.platform === "darwin") {
+  packageMacOS();
+}
 if (process.platform === "win32") {
   packageWindows();
+}
+
+function packageMacOS() {
+  const dest: string = getMacOSZipPath();
+
+  child_process.execSync(
+    `ditto -ck --keepParent "${distPath}/electronreactmobxtemplate.app" "${dest}"`
+  );
+  console.log(`Zipped to ${dest}`);
 }
 
 async function packageWindows(): Promise<void> {

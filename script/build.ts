@@ -96,10 +96,35 @@ function copyDependencies(): void {
 }
 
 async function packageApp(): Promise<void> {
+  const toPackagePlatform = (platform: NodeJS.Platform) => {
+    if (platform === "win32" || platform === "darwin" || platform === "linux") {
+      return platform;
+    }
+    throw new Error(
+      `Unable to convert to platform for electron-packager: '${
+        process.platform
+      }`
+    );
+  };
+
+  const toPackageArch = (targetArch: string | undefined): packager.arch => {
+    if (targetArch === undefined) {
+      return "x64";
+    }
+
+    if (targetArch === "arm64" || targetArch === "x64") {
+      return targetArch;
+    }
+
+    throw new Error(
+      `Building Desktop for architecture '${targetArch}' is not supported`
+    );
+  };
+
   const options: packager.Options = {
     overwrite: true,
-    platform: "win32",
-    arch: "x64",
+    platform: toPackagePlatform(process.platform),
+    arch: toPackageArch(process.env.TARGET_ARCH),
     prune: false,
     out: getDistRoot(),
     dir: outRoot,

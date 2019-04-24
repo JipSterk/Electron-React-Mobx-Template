@@ -5,7 +5,15 @@ import { getDistPath } from "./dist-info";
 
 let binaryPath: string = "";
 
-if (process.platform === "win32") {
+if (process.platform === "darwin") {
+  binaryPath = path.join(
+    getDistPath(),
+    "electronreactmobxtemplate.app",
+    "Contents",
+    "MacOS",
+    "electronreactmobxtemplate"
+  );
+} else if (process.platform === "win32") {
   binaryPath = path.join(getDistPath(), "electronreactmobxtemplate.exe");
 }
 

@@ -3,8 +3,8 @@ import * as express from "express";
 import * as webpack from "webpack";
 import * as webpackDevMiddleware from "webpack-dev-middleware";
 import * as webpackHotMiddleware from "webpack-hot-middleware";
-import configs from "../app/webpack.development";
 import { run } from "./run";
+import configs = require("../app/webpack.development");
 
 function startApp(): void {
   const runningApp: ChildProcess | null = run({ stdio: "inherit" });
