@@ -1,21 +1,21 @@
 {
-    "name": "electronreactmobxtemplate",
-    "productName": "electronreactmobxtemplate",
-    "bundleID": "com.electronreactmobxtemplate",
-    "companyName": "YOUR COMPANY NAME",
-    "description": "SOME DESCRIPTION",
-    "version": "1.0.0",
-    "main": "./main.js",
-    "dependencies": {
-        "mobx": "^5.1.0",
-        "mobx-react": "^5.2.6",
-        "react": "^16.5.0",
-        "react-dom": "^16.5.0"
-    },
-    "devDependencies": {
-        "devtron": "^1.4.0",
-        "electron-debug": "^2.0.0",
-        "electron-devtools-installer": "^2.2.4",
-        "style-loader": "^0.23.0"
-    }
+  "name": "electronreactmobxtemplate",
+  "productName": "electronreactmobxtemplate",
+  "bundleID": "com.electronreactmobxtemplate",
+  "companyName": "YOUR COMPANY NAME",
+  "description": "SOME DESCRIPTION",
+  "version": "1.0.0",
+  "main": "./main.js",
+  "dependencies": {
+    "mobx": "^5.1.0",
+    "mobx-react": "^5.2.6",
+    "react": "^16.5.0",
+    "react-dom": "^16.5.0"
+  },
+  "devDependencies": {
+    "devtron": "^1.4.0",
+    "electron-debug": "^2.0.0",
+    "electron-devtools-installer": "^2.2.4",
+    "style-loader": "^0.23.0"
+  }
 }

@@ -1,13 +1,12 @@
-import { ChildProcess, spawn, SpawnOptions } from 'child_process';
-import * as fs from 'fs';
-import * as path from 'path';
+import { ChildProcess, spawn, SpawnOptions } from "child_process";
+import * as fs from "fs";
+import * as path from "path";
+import { getDistPath } from "./dist-info";
 
-import { getDistPath } from './dist-info';
+let binaryPath: string = "";
 
-let binaryPath: string = '';
-
-if (process.platform === 'win32') {
-  binaryPath = path.join(getDistPath(), 'electronreactmobxtemplate.exe');
+if (process.platform === "win32") {
+  binaryPath = path.join(getDistPath(), "electronreactmobxtemplate.exe");
 }
 
 export function run(spawnOptions: SpawnOptions): ChildProcess | null {
@@ -23,7 +22,7 @@ export function run(spawnOptions: SpawnOptions): ChildProcess | null {
   const options: SpawnOptions = Object.assign({}, spawnOptions);
 
   options.env = Object.assign(options.env || {}, process.env, {
-    NODE_ENV: 'development'
+    NODE_ENV: "development"
   });
 
   return spawn(binaryPath, [], options);

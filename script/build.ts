@@ -1,106 +1,121 @@
-import * as cp from 'child_process';
-import * as packager from 'electron-packager';
-import * as fs from 'fs-extra';
-import * as path from 'path';
-
-import { externals } from '../app/webpack.common';
-import { getDistRoot } from './dist-info';
+import * as cp from "child_process";
+import * as packager from "electron-packager";
+import * as fs from "fs-extra";
+import * as path from "path";
+import { externals } from "../app/webpack.common";
+import { getDistRoot } from "./dist-info";
 
 type PackageLookup = {
-    [key: string]: string
-}
+  [key: string]: string;
+};
 
 type Package = {
-    productName: string,
-    dependencies: PackageLookup,
-    devDependencies: PackageLookup
-}
+  productName: string;
+  dependencies: PackageLookup;
+  devDependencies: PackageLookup;
+};
 
-const isPublishableBuild: boolean = process.env.NODE_ENV !== 'development';
+const isPublishableBuild: boolean = process.env.NODE_ENV !== "development";
 
-const projectRoot: string = path.join(__dirname, '..');
-const outRoot: string = path.join(projectRoot, 'out');
+const projectRoot: string = path.join(__dirname, "..");
+const outRoot: string = path.join(projectRoot, "out");
 
 copyDependencies();
 
 packageApp();
 
 function copyDependencies(): void {
-    const originalPackage: Package = require(path.join(projectRoot, 'app', 'package.json'));
+  const originalPackage: Package = require(path.join(
+    projectRoot,
+    "app",
+    "package.json"
+  ));
 
-    const oldDependencies: PackageLookup = originalPackage.dependencies;
-    const newDependencies: PackageLookup = {}
+  const oldDependencies: PackageLookup = originalPackage.dependencies;
+  const newDependencies: PackageLookup = {};
 
-    for (const name of Object.keys(oldDependencies)) {
-        const spec: string = oldDependencies[name];
-        if (externals.indexOf(name) !== -1) {
-            newDependencies[name] = spec;
-        }
+  for (const name of Object.keys(oldDependencies)) {
+    const spec: string = oldDependencies[name];
+    if (externals.indexOf(name) !== -1) {
+      newDependencies[name] = spec;
     }
+  }
 
-    const oldDevDependencies: PackageLookup = originalPackage.devDependencies;
-    const newDevDependencies: PackageLookup = {}
+  const oldDevDependencies: PackageLookup = originalPackage.devDependencies;
+  const newDevDependencies: PackageLookup = {};
 
-    if (!isPublishableBuild) {
-        for (const name of Object.keys(oldDevDependencies)) {
-            const spec: string = oldDevDependencies[name];
-            if (externals.indexOf(name) !== -1) {
-                newDevDependencies[name] = spec;
-            }
-        }
+  if (!isPublishableBuild) {
+    for (const name of Object.keys(oldDevDependencies)) {
+      const spec: string = oldDevDependencies[name];
+      if (externals.indexOf(name) !== -1) {
+        newDevDependencies[name] = spec;
+      }
     }
+  }
 
-    const updatedPackage: Package = Object.assign({}, originalPackage, {
-        productName: 'electronreactmobxtemplate',
-        dependencies: newDependencies,
-        devDependencies: newDevDependencies,
-    });
+  const updatedPackage: Package = Object.assign({}, originalPackage, {
+    productName: "electronreactmobxtemplate",
+    dependencies: newDependencies,
+    devDependencies: newDevDependencies
+  });
 
-    if (isPublishableBuild) {
-        delete updatedPackage.devDependencies;
-    }
+  if (isPublishableBuild) {
+    delete updatedPackage.devDependencies;
+  }
 
-    fs.writeFileSync(path.join(outRoot, 'package.json'), JSON.stringify(updatedPackage));
+  fs.writeFileSync(
+    path.join(outRoot, "package.json"),
+    JSON.stringify(updatedPackage)
+  );
 
-    fs.removeSync(path.resolve(outRoot, 'node_modules'));
+  fs.removeSync(path.resolve(outRoot, "node_modules"));
 
-    if (Object.keys(newDependencies).length || Object.keys(newDevDependencies).length) {
-        console.log('Installing dependencies via yarn…');
-        cp.execSync('yarn install', { cwd: outRoot, env: process.env });
-    }
+  if (
+    Object.keys(newDependencies).length ||
+    Object.keys(newDevDependencies).length
+  ) {
+    console.log("Installing dependencies via yarn…");
+    cp.execSync("yarn install", { cwd: outRoot, env: process.env });
+  }
 
-    if (!isPublishableBuild) {
-        console.log('Installing 7zip (dependency for electron-devtools-installer)');
+  if (!isPublishableBuild) {
+    console.log("Installing 7zip (dependency for electron-devtools-installer)");
 
-        const sevenZipSource: string = path.resolve(projectRoot, 'app/node_modules/7zip');
-        const sevenZipDestination: string = path.resolve(outRoot, 'node_modules/7zip');
+    const sevenZipSource: string = path.resolve(
+      projectRoot,
+      "app/node_modules/7zip"
+    );
+    const sevenZipDestination: string = path.resolve(
+      outRoot,
+      "node_modules/7zip"
+    );
 
-        fs.mkdirpSync(sevenZipDestination);
-        fs.copySync(sevenZipSource, sevenZipDestination);
-    }
+    fs.mkdirpSync(sevenZipDestination);
+    fs.copySync(sevenZipSource, sevenZipDestination);
+  }
 }
 
 async function packageApp(): Promise<void> {
-    const options: packager.Options = {
-        overwrite: true,
-        platform: 'win32',
-        arch: 'x64',
-        prune: false,
-        out: getDistRoot(),
-        dir: outRoot,
-        ignore: [
-            new RegExp('/node_modules/electron($|/)'),
-            new RegExp('/node_modules/electron-packager($|/)'),
-            new RegExp('/\\.git($|/)'),
-            new RegExp('/node_modules/\\.bin($|/)'),
-        ],
-    }
+  const options: packager.Options = {
+    overwrite: true,
+    platform: "win32",
+    arch: "x64",
+    prune: false,
+    out: getDistRoot(),
+    dir: outRoot,
+    ignore: [
+      new RegExp("/node_modules/electron($|/)"),
+      new RegExp("/node_modules/electron-packager($|/)"),
+      new RegExp("/\\.git($|/)"),
+      new RegExp("/node_modules/\\.bin($|/)")
+    ]
+  };
 
-    try {
-        const appPaths: string | string[] = await packager(options);
-        console.log(`Built to ${appPaths}`);
-    } catch (error) {
-        console.error(error);
-        process.exit(1);
-    }
+  try {
+    const appPaths: string | string[] = await packager(options);
+    console.log(`Built to ${appPaths}`);
+  } catch (error) {
+    console.error(error);
+    process.exit(1);
+  }
 }
