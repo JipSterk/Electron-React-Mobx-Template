@@ -13,7 +13,7 @@
   version "3.4.30"
   resolved "https://registry.yarnpkg.com/@types/clean-css/-/clean-css-3.4.30.tgz#0052c136f5248002428e3638b37de4a39818641d"
 
-"@types/clean-webpack-plugin@^0.1.2":
+"@types/clean-webpack-plugin@0.1.2":
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/@types/clean-webpack-plugin/-/clean-webpack-plugin-0.1.2.tgz#f3c9d97dd397a9db86ba6b9b245ca0eedf88f3b2"
   dependencies:
@@ -25,13 +25,13 @@
   dependencies:
     "@types/node" "*"
 
-"@types/electron-packager@^12.0.0":
+"@types/electron-packager@12.0.0":
   version "12.0.0"
   resolved "https://registry.yarnpkg.com/@types/electron-packager/-/electron-packager-12.0.0.tgz#acbcf3c5895c1eeda3d2a325c2feeded6a639b1f"
   dependencies:
     "@types/node" "*"
 
-"@types/electron-winstaller@^2.6.0":
+"@types/electron-winstaller@2.6.1":
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/@types/electron-winstaller/-/electron-winstaller-2.6.1.tgz#7acd7956bfe1a9e89602a7bb130384dd55f15508"
 
@@ -47,7 +47,7 @@
     "@types/node" "*"
     "@types/range-parser" "*"
 
-"@types/express@^4.16.0":
+"@types/express@4.16.0":
   version "4.16.0"
   resolved "https://registry.yarnpkg.com/@types/express/-/express-4.16.0.tgz#6d8bc42ccaa6f35cf29a2b7c3333cb47b5a32a19"
   dependencies:
@@ -55,7 +55,7 @@
     "@types/express-serve-static-core" "*"
     "@types/serve-static" "*"
 
-"@types/fs-extra@^5.0.4":
+"@types/fs-extra@5.0.4":
   version "5.0.4"
   resolved "https://registry.yarnpkg.com/@types/fs-extra/-/fs-extra-5.0.4.tgz#b971134d162cc0497d221adde3dbb67502225599"
   dependencies:
@@ -69,7 +69,7 @@
     "@types/relateurl" "*"
     "@types/uglify-js" "*"
 
-"@types/html-webpack-plugin@^3.2.0":
+"@types/html-webpack-plugin@3.2.0":
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/@types/html-webpack-plugin/-/html-webpack-plugin-3.2.0.tgz#26b20854124bbcccbc22ccec715a1ba74583526c"
   dependencies:
@@ -91,13 +91,13 @@
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@types/mime/-/mime-2.0.0.tgz#5a7306e367c539b9f6543499de8dd519fac37a8b"
 
-"@types/mini-css-extract-plugin@^0.2.0":
+"@types/mini-css-extract-plugin@0.2.0":
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/@types/mini-css-extract-plugin/-/mini-css-extract-plugin-0.2.0.tgz#afb037dbbd76f6c13803927c2751d194188b5d47"
   dependencies:
     "@types/webpack" "*"
 
-"@types/node@*", "@types/node@^10.9.4":
+"@types/node@*", "@types/node@10.9.4":
   version "10.9.4"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.9.4.tgz#0f4cb2dc7c1de6096055357f70179043c33e9897"
 
@@ -115,14 +115,14 @@
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/@types/range-parser/-/range-parser-1.2.2.tgz#fa8e1ad1d474688a757140c91de6dace6f4abc8d"
 
-"@types/react-dom@^16.0.7":
+"@types/react-dom@16.0.7":
   version "16.0.7"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.0.7.tgz#54d0f867a76b90597e8432030d297982f25c20ba"
   dependencies:
     "@types/node" "*"
     "@types/react" "*"
 
-"@types/react@*", "@types/react@^16.4.13":
+"@types/react@*", "@types/react@16.4.13":
   version "16.4.13"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.4.13.tgz#1385f5dc3486aa493849a32ccce626a817543e28"
   dependencies:
@@ -150,7 +150,7 @@
   dependencies:
     source-map "^0.6.1"
 
-"@types/webpack-dev-middleware@^2.0.2":
+"@types/webpack-dev-middleware@2.0.2":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@types/webpack-dev-middleware/-/webpack-dev-middleware-2.0.2.tgz#33934f15de582f1a6c21ea21c42f69282e328c76"
   dependencies:
@@ -159,20 +159,20 @@
     "@types/memory-fs" "*"
     "@types/webpack" "*"
 
-"@types/webpack-hot-middleware@^2.16.4":
+"@types/webpack-hot-middleware@2.16.4":
   version "2.16.4"
   resolved "https://registry.yarnpkg.com/@types/webpack-hot-middleware/-/webpack-hot-middleware-2.16.4.tgz#258ecf2ae0ee80a988cc65547b24608fe10be440"
   dependencies:
     "@types/connect" "*"
     "@types/webpack" "*"
 
-"@types/webpack-merge@^4.1.3":
+"@types/webpack-merge@4.1.3":
   version "4.1.3"
   resolved "https://registry.yarnpkg.com/@types/webpack-merge/-/webpack-merge-4.1.3.tgz#e6af0f2a0f20a86ac83d7da84a2e454063121ad4"
   dependencies:
     "@types/webpack" "*"
 
-"@types/webpack@*", "@types/webpack@^4.4.11":
+"@types/webpack@*", "@types/webpack@4.4.11":
   version "4.4.11"
   resolved "https://registry.yarnpkg.com/@types/webpack/-/webpack-4.4.11.tgz#0ca832870d55c4e92498c01d22d00d02b0f62ae9"
   dependencies:
@@ -1393,7 +1393,7 @@ electron-osx-sign@^0.4.1:
     minimist "^1.2.0"
     plist "^2.1.0"
 
-electron-packager@^12.1.1:
+electron-packager@12.1.1:
   version "12.1.1"
   resolved "https://registry.yarnpkg.com/electron-packager/-/electron-packager-12.1.1.tgz#a8a9b8b312ab56b4e67ef740f8e602138eedc6e6"
   dependencies:
@@ -1415,7 +1415,7 @@ electron-packager@^12.1.1:
     semver "^5.3.0"
     yargs-parser "^10.0.0"
 
-electron-winstaller@^2.5.2:
+electron-winstaller@2.6.4:
   version "2.6.4"
   resolved "https://registry.yarnpkg.com/electron-winstaller/-/electron-winstaller-2.6.4.tgz#6b48076e873a6ea356251f157b68b9e5dc03b5a9"
   dependencies:
@@ -1426,7 +1426,7 @@ electron-winstaller@^2.5.2:
     lodash.template "^4.2.2"
     temp "^0.8.3"
 
-electron@^2.0.8:
+electron@2.0.8:
   version "2.0.8"
   resolved "https://registry.yarnpkg.com/electron/-/electron-2.0.8.tgz#6ec7113b356e09cc9899797e0d41ebff8163e962"
   dependencies:
@@ -2782,7 +2782,7 @@ mime@^2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/mime/-/mime-2.3.1.tgz#b1621c54d63b97c47d3cfe7f7215f7d64517c369"
 
-mini-css-extract-plugin@^0.4.2:
+mini-css-extract-plugin@0.4.2:
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/mini-css-extract-plugin/-/mini-css-extract-plugin-0.4.2.tgz#b3ecc0d6b1bbe5ff14add42b946a7b200cf78651"
   dependencies:
