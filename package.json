@@ -19,7 +19,7 @@
     "@types/html-webpack-plugin": "3.2.0",
     "@types/mini-css-extract-plugin": "0.2.0",
     "@types/node": "11.13.7",
-    "@types/react": "16.8.14",
+    "@types/react": "16.8.16",
     "@types/react-dom": "16.8.4",
     "@types/webpack": "4.4.27",
     "@types/webpack-dev-middleware": "2.0.2",
