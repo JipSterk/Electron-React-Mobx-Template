@@ -44,7 +44,7 @@
     "style-loader": "^0.23.1",
     "ts-node": "^8.1.0",
     "typescript": "^3.4.5",
-    "webpack": "4.31.0",
+    "webpack": "4.32.0",
     "webpack-dev-middleware": "^3.6.2",
     "webpack-hot-middleware": "^2.24.3",
     "webpack-merge": "^4.2.1"
