@@ -28,7 +28,7 @@
     "electron": "5.0.2",
     "electron-packager": "13.1.1",
     "electron-winstaller": "3.0.4",
-    "mini-css-extract-plugin": "0.6.0"
+    "mini-css-extract-plugin": "0.7.0"
   },
   "dependencies": {
     "awesome-typescript-loader": "^5.2.1",
