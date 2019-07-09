@@ -3819,10 +3819,10 @@ parallel-transform@^1.1.0:
     inherits "^2.0.3"
     readable-stream "^2.1.5"
 
-parallel-webpack@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/parallel-webpack/-/parallel-webpack-2.3.0.tgz#a614625e25647cea9655918cb80cf829fa674ff8"
-  integrity sha512-RCIDF+YOqyAJeM8NumtOQ8JYjUXexDRIN4slFNfvUp1RxLB1zLeLZMAwlP6s7l9LhuR5xJ2pv8ckIsdESzSqog==
+parallel-webpack@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/parallel-webpack/-/parallel-webpack-2.4.0.tgz#37b06e6018cfeaccf713c969a19ae31b77b0474c"
+  integrity sha512-vJ/TKfPcjayaw+ABcHHUoykxQMA1NtqqYIWnk9wi9n6/DEQfQ8oGmruPpSgz5LdpA/qBkKIfVe6nEmA6TPJazg==
   dependencies:
     ajv "^4.9.2"
     bluebird "^3.0.6"
