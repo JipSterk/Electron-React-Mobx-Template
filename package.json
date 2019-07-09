@@ -46,7 +46,7 @@
     "typescript": "^3.4.5",
     "webpack": "4.35.3",
     "webpack-dev-middleware": "^3.7.0",
-    "webpack-hot-middleware": "^2.24.3",
+    "webpack-hot-middleware": "^2.25.0",
     "webpack-merge": "^4.2.1"
   }
 }
