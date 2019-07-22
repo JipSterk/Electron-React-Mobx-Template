@@ -21,7 +21,7 @@
     "@types/node": "12.6.1",
     "@types/react": "16.8.20",
     "@types/react-dom": "16.8.4",
-    "@types/webpack": "4.4.34",
+    "@types/webpack": "4.32.0",
     "@types/webpack-dev-middleware": "2.0.3",
     "@types/webpack-hot-middleware": "2.16.5",
     "@types/webpack-merge": "4.1.5",
