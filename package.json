@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "main": "index.html",
   "scripts": {
+    "postinstall": "ts-node -P script/tsconfig.json script/post-install.ts",
     "start": "ts-node script/start.ts",
     "package": "ts-node script/package.ts",
     "build:dev": "yarn compile:dev && cross-env NODE_ENV=development ts-node script/build.ts",
