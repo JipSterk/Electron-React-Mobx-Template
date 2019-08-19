@@ -31,6 +31,6 @@ findYarnVersion(path => {
   );
 
   if (result.status !== 0) {
-    process.exit(result.status);
+    process.exit(result.status!);
   }
 });
