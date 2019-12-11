@@ -24,7 +24,7 @@
     "@types/react-dom": "16.9.4",
     "@types/webpack": "4.41.0",
     "@types/webpack-dev-middleware": "2.0.3",
-    "@types/webpack-hot-middleware": "2.16.5",
+    "@types/webpack-hot-middleware": "2.25.0",
     "@types/webpack-merge": "4.1.5",
     "electron": "7.1.4",
     "electron-packager": "14.1.1",
