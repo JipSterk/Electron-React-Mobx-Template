@@ -1,6 +1,6 @@
 import { ChildProcess, spawn, SpawnOptions } from "child_process";
-import * as fs from "fs";
-import * as path from "path";
+import fs from "fs";
+import path from "path";
 import { getDistPath } from "./dist-info";
 
 let binaryPath: string = "";
@@ -30,7 +30,7 @@ export function run(spawnOptions: SpawnOptions): ChildProcess | null {
   const options: SpawnOptions = Object.assign({}, spawnOptions);
 
   options.env = Object.assign(options.env || {}, process.env, {
-    NODE_ENV: "development"
+    NODE_ENV: "development",
   });
 
   return spawn(binaryPath, [], options);

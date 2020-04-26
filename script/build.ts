@@ -1,7 +1,7 @@
-import * as cp from "child_process";
-import * as packager from "electron-packager";
-import * as fs from "fs-extra";
-import * as path from "path";
+import child_process from "child_process";
+import packager from "electron-packager";
+import fs from "fs-extra";
+import path from "path";
 import { externals } from "../app/webpack.common";
 import { getDistRoot } from "./dist-info";
 
@@ -56,7 +56,7 @@ function copyDependencies(): void {
   const updatedPackage: Package = Object.assign({}, originalPackage, {
     productName: "electronreactmobxtemplate",
     dependencies: newDependencies,
-    devDependencies: newDevDependencies
+    devDependencies: newDevDependencies,
   });
 
   if (isPublishableBuild) {
@@ -75,7 +75,7 @@ function copyDependencies(): void {
     Object.keys(newDevDependencies).length
   ) {
     console.log("Installing dependencies via yarn…");
-    cp.execSync("yarn install", { cwd: outRoot, env: process.env });
+    child_process.execSync("yarn install", { cwd: outRoot, env: process.env });
   }
 
   if (!isPublishableBuild) {
@@ -101,9 +101,7 @@ async function packageApp(): Promise<void> {
       return platform;
     }
     throw new Error(
-      `Unable to convert to platform for electron-packager: '${
-        process.platform
-      }`
+      `Unable to convert to platform for electron-packager: '${process.platform}`
     );
   };
 
@@ -132,8 +130,8 @@ async function packageApp(): Promise<void> {
       new RegExp("/node_modules/electron($|/)"),
       new RegExp("/node_modules/electron-packager($|/)"),
       new RegExp("/\\.git($|/)"),
-      new RegExp("/node_modules/\\.bin($|/)")
-    ]
+      new RegExp("/node_modules/\\.bin($|/)"),
+    ],
   };
 
   try {

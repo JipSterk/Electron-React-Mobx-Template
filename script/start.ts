@@ -1,8 +1,8 @@
 import { ChildProcess } from "child_process";
-import * as express from "express";
-import * as webpack from "webpack";
-import * as webpackDevMiddleware from "webpack-dev-middleware";
-import * as webpackHotMiddleware from "webpack-hot-middleware";
+import express from "express";
+import webpack from "webpack";
+import webpackDevMiddleware from "webpack-dev-middleware";
+import webpackHotMiddleware from "webpack-hot-middleware";
 import { run } from "./run";
 import configs = require("../app/webpack.development");
 
@@ -15,12 +15,9 @@ function startApp(): void {
     return;
   }
 
-  runningApp.on(
-    "close",
-    (): void => {
-      process.exit(0);
-    }
-  );
+  runningApp.on("close", (): void => {
+    process.exit(0);
+  });
 }
 
 if (process.env.NODE_ENV === "production") {
@@ -34,24 +31,20 @@ if (process.env.NODE_ENV === "production") {
 
   server.use(
     webpackDevMiddleware(compiler, {
-      publicPath: developmentRenderConfig!.output!.publicPath!
+      publicPath: developmentRenderConfig!.output!.publicPath!,
     })
   );
 
   server.use(webpackHotMiddleware(compiler));
 
-  server.listen(
-    port,
-    "localhost",
-    (error?: Error): void => {
-      if (error) {
-        console.log(error);
-        process.exit(1);
-        return;
-      }
-
-      console.log(`Server running at http://localhost:${port}`);
-      startApp();
+  server.listen(port, "localhost", (error?: Error): void => {
+    if (error) {
+      console.log(error);
+      process.exit(1);
+      return;
     }
-  );
+
+    console.log(`Server running at http://localhost:${port}`);
+    startApp();
+  });
 }

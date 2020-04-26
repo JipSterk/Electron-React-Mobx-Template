@@ -5,10 +5,13 @@
     "target": "es2017",
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "noUnusedLocals": true,
     "sourceMap": true,
     "jsx": "react",
     "strict": true,
+    "noEmit": true,
     "outDir": "./out"
   },
   "include": ["app/**/*.ts", "app/**/*.tsx", "app/webpack.*.ts"],

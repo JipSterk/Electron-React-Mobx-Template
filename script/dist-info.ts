@@ -1,4 +1,4 @@
-import * as path from "path";
+import path from "path";
 
 const projectRoot: string = path.join(__dirname, "..");
 

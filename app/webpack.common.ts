@@ -1,8 +1,8 @@
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
-import * as HtmlWebpackPlugin from "html-webpack-plugin";
-import * as path from "path";
-import * as webpack from "webpack";
-import * as merge from "webpack-merge";
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import path from "path";
+import webpack from "webpack";
+import merge from "webpack-merge";
 
 const outputDir: string = "out";
 export const externals: string[] = ["7zip"];
@@ -16,46 +16,54 @@ const commonConfig: webpack.Configuration = {
   output: {
     path: path.resolve(__dirname, "..", outputDir),
     filename: "[name].js",
-    libraryTarget: "commonjs2"
+    libraryTarget: "commonjs2",
   },
   resolve: {
-    extensions: [".js", ".ts", ".tsx"]
+    extensions: [".js", ".ts", ".tsx"],
   },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
-        use: "awesome-typescript-loader"
-      }
-    ]
+        include: path.resolve(__dirname, "src"),
+        use: [
+          {
+            loader: "awesome-typescript-loader",
+            options: {
+              useCache: true,
+            },
+          },
+        ],
+      },
+    ],
   },
   plugins: [
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: [outputDir],
-      verbose: false
-    })
+      verbose: false,
+    }),
   ],
   node: {
     __dirname: false,
-    __filename: false
-  }
+    __filename: false,
+  },
 };
 
 export const commonMainConfig: webpack.Configuration = merge(commonConfig, {
   target: "electron-main",
   entry: {
-    main: path.resolve(__dirname, "src/main-process/main")
-  }
+    main: path.resolve(__dirname, "src/main-process/main"),
+  },
 });
 
 export const commonRenderConfig: webpack.Configuration = merge(commonConfig, {
   target: "electron-renderer",
   entry: {
-    renderer: path.resolve(__dirname, "src/ui/index")
+    renderer: path.resolve(__dirname, "src/ui/index"),
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, "static", "index.html")
-    })
-  ]
+      template: path.resolve(__dirname, "static", "index.html"),
+    }),
+  ],
 });

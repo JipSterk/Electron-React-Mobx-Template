@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import "./main.scss";
 
 export const Main = (): JSX.Element => (

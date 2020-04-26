@@ -1,11 +1,11 @@
 import { spawnSync, SpawnSyncOptions } from "child_process";
-import * as path from "path";
+import path from "path";
 
 const root = path.dirname(__dirname);
 
 const options: SpawnSyncOptions = {
   cwd: root,
-  stdio: "inherit"
+  stdio: "inherit",
 };
 
 const result = spawnSync(

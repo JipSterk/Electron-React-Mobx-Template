@@ -1,6 +1,6 @@
-import * as child_process from "child_process";
-import * as electronInstaller from "electron-winstaller";
-import * as path from "path";
+import child_process from "child_process";
+import electronInstaller from "electron-winstaller";
+import path from "path";
 import { getDistPath, getMacOSZipPath } from "./dist-info";
 
 const distPath: string = getDistPath();
@@ -32,7 +32,7 @@ async function packageWindows(): Promise<void> {
     exe: "electronreactmobxtemplate.exe",
     title: "electronreactmobxtemplate",
     setupExe: "electronreactmobxtemplate Setup.exe",
-    setupMsi: "electronreactmobxtemplate Setup.msi"
+    setupMsi: "electronreactmobxtemplate Setup.msi",
   };
 
   try {
