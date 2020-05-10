@@ -49,14 +49,14 @@ const commonConfig: Configuration = {
   },
 };
 
-export const commonMainConfig: Configuration = merge(commonConfig, {
+export const commonMainConfig = merge(commonConfig, {
   target: "electron-main",
   entry: {
     main: path.resolve(__dirname, "src/main-process/main"),
   },
 });
 
-export const commonRenderConfig: Configuration = merge(commonConfig, {
+export const commonRenderConfig = merge(commonConfig, {
   target: "electron-renderer",
   entry: {
     renderer: path.resolve(__dirname, "src/ui/index"),

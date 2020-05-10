@@ -3,8 +3,8 @@ import { createWindowsInstaller, Options } from "electron-winstaller";
 import path from "path";
 import { getDistPath, getMacOSZipPath } from "./dist-info";
 
-const distPath: string = getDistPath();
-const outputDir: string = path.join(distPath, "..", "installer");
+const distPath = getDistPath();
+const outputDir = path.join(distPath, "..", "installer");
 
 if (process.platform === "darwin") {
   packageMacOS();
@@ -14,7 +14,7 @@ if (process.platform === "win32") {
 }
 
 function packageMacOS() {
-  const dest: string = getMacOSZipPath();
+  const dest = getMacOSZipPath();
 
   child_process.execSync(
     `ditto -ck --keepParent "${distPath}/electronreactmobxtemplate.app" "${dest}"`

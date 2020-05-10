@@ -8,30 +8,22 @@ const config: Configuration = {
   devtool: "source-map",
 };
 
-const productionMainConfig: Configuration = webpackMerge(
-  config,
-  commonMainConfig,
-  {}
-);
+const productionMainConfig = webpackMerge(config, commonMainConfig, {});
 
-const productionRenderConfig: Configuration = webpackMerge(
-  config,
-  commonRenderConfig,
-  {
-    module: {
-      rules: [
-        {
-          test: /\.scss$/,
-          use: [loader, "css-loader", "sass-loader"],
-        },
-      ],
-    },
-    plugins: [
-      new MiniCSSExtractPlugin({
-        filename: "[name].css",
-      }),
+const productionRenderConfig = webpackMerge(config, commonRenderConfig, {
+  module: {
+    rules: [
+      {
+        test: /\.scss$/,
+        use: [loader, "css-loader", "sass-loader"],
+      },
     ],
-  }
-);
+  },
+  plugins: [
+    new MiniCSSExtractPlugin({
+      filename: "[name].css",
+    }),
+  ],
+});
 
 export = [productionMainConfig, productionRenderConfig];

@@ -1,8 +1,8 @@
 import path from "path";
 
-const projectRoot: string = path.join(__dirname, "..");
+const projectRoot = path.join(__dirname, "..");
 
-export function getMacOSZipPath() {
+export function getMacOSZipPath(): string {
   return path.join(getDistPath(), "..", "electronreactmobxtemplate.zip");
 }
 

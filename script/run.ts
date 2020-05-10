@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 import { getDistPath } from "./dist-info";
 
-let binaryPath: string = "";
+let binaryPath = "";
 
 if (process.platform === "darwin") {
   binaryPath = path.join(
@@ -19,7 +19,7 @@ if (process.platform === "darwin") {
 
 export function run(spawnOptions: SpawnOptions): ChildProcess | null {
   try {
-    const stats: fs.Stats = fs.statSync(binaryPath);
+    const stats = fs.statSync(binaryPath);
     if (!stats.isFile()) {
       return null;
     }
@@ -27,7 +27,7 @@ export function run(spawnOptions: SpawnOptions): ChildProcess | null {
     return null;
   }
 
-  const options: SpawnOptions = Object.assign({}, spawnOptions);
+  const options = Object.assign({}, spawnOptions);
 
   options.env = Object.assign(options.env || {}, process.env, {
     NODE_ENV: "development",

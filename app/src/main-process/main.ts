@@ -1,6 +1,6 @@
 import { app, BrowserWindow } from "electron";
 
-let mainWindow: Electron.BrowserWindow | null = null;
+let mainWindow: BrowserWindow | null = null;
 
 const createWindow = async (): Promise<void> => {
   mainWindow = new BrowserWindow({

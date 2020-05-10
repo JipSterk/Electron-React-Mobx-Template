@@ -15,10 +15,10 @@ type Package = {
   devDependencies: PackageLookup;
 };
 
-const isPublishableBuild: boolean = process.env.NODE_ENV !== "development";
+const isPublishableBuild = process.env.NODE_ENV !== "development";
 
-const projectRoot: string = path.join(__dirname, "..");
-const outRoot: string = path.join(projectRoot, "out");
+const projectRoot = path.join(__dirname, "..");
+const outRoot = path.join(projectRoot, "out");
 
 copyDependencies();
 
@@ -81,14 +81,8 @@ function copyDependencies(): void {
   if (!isPublishableBuild) {
     console.log("Installing 7zip (dependency for electron-devtools-installer)");
 
-    const sevenZipSource: string = path.resolve(
-      projectRoot,
-      "app/node_modules/7zip"
-    );
-    const sevenZipDestination: string = path.resolve(
-      outRoot,
-      "node_modules/7zip"
-    );
+    const sevenZipSource = path.resolve(projectRoot, "app/node_modules/7zip");
+    const sevenZipDestination = path.resolve(outRoot, "node_modules/7zip");
 
     fs.mkdirpSync(sevenZipDestination);
     fs.copySync(sevenZipSource, sevenZipDestination);
@@ -135,7 +129,7 @@ async function packageApp(): Promise<void> {
   };
 
   try {
-    const appPaths: string | string[] = await packager(options);
+    const appPaths = await packager(options);
     console.log(`Built to ${appPaths}`);
   } catch (error) {
     console.error(error);
