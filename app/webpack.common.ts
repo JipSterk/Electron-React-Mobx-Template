@@ -1,7 +1,7 @@
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import path from "path";
-import webpack from "webpack";
+import { Configuration } from "webpack";
 import merge from "webpack-merge";
 
 const outputDir: string = "out";
@@ -11,7 +11,7 @@ if (process.env.NODE_ENV === "development") {
   externals.push("devtron");
 }
 
-const commonConfig: webpack.Configuration = {
+const commonConfig: Configuration = {
   externals: externals,
   output: {
     path: path.resolve(__dirname, "..", outputDir),
@@ -49,14 +49,14 @@ const commonConfig: webpack.Configuration = {
   },
 };
 
-export const commonMainConfig: webpack.Configuration = merge(commonConfig, {
+export const commonMainConfig: Configuration = merge(commonConfig, {
   target: "electron-main",
   entry: {
     main: path.resolve(__dirname, "src/main-process/main"),
   },
 });
 
-export const commonRenderConfig: webpack.Configuration = merge(commonConfig, {
+export const commonRenderConfig: Configuration = merge(commonConfig, {
   target: "electron-renderer",
   entry: {
     renderer: path.resolve(__dirname, "src/ui/index"),

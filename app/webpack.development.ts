@@ -1,26 +1,26 @@
-import webpack from "webpack";
+import { Configuration, Entry, HotModuleReplacementPlugin } from "webpack";
 import webpackMerge from "webpack-merge";
-import * as common from "./webpack.common";
+import { commonMainConfig, commonRenderConfig } from "./webpack.common";
 
-const config: webpack.Configuration = {
+const config: Configuration = {
   mode: "development",
   devtool: "source-map",
 };
 
-const developmentMainConfig: webpack.Configuration = webpackMerge(
+const developmentMainConfig: Configuration = webpackMerge(
   config,
-  common.commonMainConfig,
+  commonMainConfig,
   {}
 );
 
-const developmentRenderConfig: webpack.Configuration = webpackMerge(
+const developmentRenderConfig: Configuration = webpackMerge(
   config,
-  common.commonRenderConfig,
+  commonRenderConfig,
   {
     entry: {
       renderer: [
         "webpack-hot-middleware/client?path=http://localhost:3000/__webpack_hmr",
-        (common.commonRenderConfig.entry as webpack.Entry).renderer as string,
+        (commonRenderConfig.entry as Entry).renderer as string,
       ],
     },
     output: {
@@ -38,7 +38,7 @@ const developmentRenderConfig: webpack.Configuration = webpackMerge(
         },
       ],
     },
-    plugins: [new webpack.HotModuleReplacementPlugin()],
+    plugins: [new HotModuleReplacementPlugin()],
   }
 );
 

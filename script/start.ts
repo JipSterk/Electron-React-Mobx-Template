@@ -1,6 +1,6 @@
 import { ChildProcess } from "child_process";
-import express from "express";
-import webpack from "webpack";
+import express, { Application } from "express";
+import webpack, { Compiler, Configuration } from "webpack";
 import webpackDevMiddleware from "webpack-dev-middleware";
 import webpackHotMiddleware from "webpack-hot-middleware";
 import { run } from "./run";
@@ -23,10 +23,10 @@ function startApp(): void {
 if (process.env.NODE_ENV === "production") {
   startApp();
 } else {
-  const developmentRenderConfig: webpack.Configuration = configs[1];
+  const developmentRenderConfig: Configuration = configs[1];
 
-  const server: express.Application = express();
-  const compiler: webpack.Compiler = webpack(developmentRenderConfig);
+  const server: Application = express();
+  const compiler: Compiler = webpack(developmentRenderConfig);
   const port: number = Number.parseInt(process.env.PORT!) || 3000;
 
   server.use(

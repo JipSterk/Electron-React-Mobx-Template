@@ -1,28 +1,28 @@
-import MiniCSSExtractPlugin from "mini-css-extract-plugin";
-import webpack from "webpack";
+import MiniCSSExtractPlugin, { loader } from "mini-css-extract-plugin";
+import { Configuration } from "webpack";
 import webpackMerge from "webpack-merge";
-import * as common from "./webpack.common";
+import { commonMainConfig, commonRenderConfig } from "./webpack.common";
 
-const config: webpack.Configuration = {
+const config: Configuration = {
   mode: "production",
   devtool: "source-map",
 };
 
-const productionMainConfig: webpack.Configuration = webpackMerge(
+const productionMainConfig: Configuration = webpackMerge(
   config,
-  common.commonMainConfig,
+  commonMainConfig,
   {}
 );
 
-const productionRenderConfig: webpack.Configuration = webpackMerge(
+const productionRenderConfig: Configuration = webpackMerge(
   config,
-  common.commonRenderConfig,
+  commonRenderConfig,
   {
     module: {
       rules: [
         {
           test: /\.scss$/,
-          use: [MiniCSSExtractPlugin.loader, "css-loader", "sass-loader"],
+          use: [loader, "css-loader", "sass-loader"],
         },
       ],
     },

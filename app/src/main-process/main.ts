@@ -7,6 +7,11 @@ const createWindow = async (): Promise<void> => {
     width: 800,
     height: 600,
     title: "Electron & react & webpack",
+    webPreferences: {
+      disableBlinkFeatures: "Auxclick",
+      experimentalFeatures: true,
+      nodeIntegration: true,
+    },
   });
 
   mainWindow.loadURL(`file://${__dirname}/index.html`);

@@ -1,5 +1,5 @@
 import child_process from "child_process";
-import electronInstaller from "electron-winstaller";
+import { createWindowsInstaller, Options } from "electron-winstaller";
 import path from "path";
 import { getDistPath, getMacOSZipPath } from "./dist-info";
 
@@ -23,7 +23,7 @@ function packageMacOS() {
 }
 
 async function packageWindows(): Promise<void> {
-  const options: electronInstaller.Options = {
+  const options: Options = {
     name: "electronreactmobxtemplate.nupkg",
     appDirectory: distPath,
     outputDirectory: outputDir,
@@ -36,7 +36,7 @@ async function packageWindows(): Promise<void> {
   };
 
   try {
-    await electronInstaller.createWindowsInstaller(options);
+    await createWindowsInstaller(options);
     console.log(`Installers created in ${outputDir}`);
   } catch (error) {
     console.log(`Error packaging: ${error}`);

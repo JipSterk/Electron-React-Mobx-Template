@@ -1,5 +1,5 @@
 import child_process from "child_process";
-import packager from "electron-packager";
+import packager, { arch, Options } from "electron-packager";
 import fs from "fs-extra";
 import path from "path";
 import { externals } from "../app/webpack.common";
@@ -105,7 +105,7 @@ async function packageApp(): Promise<void> {
     );
   };
 
-  const toPackageArch = (targetArch: string | undefined): packager.arch => {
+  const toPackageArch = (targetArch: string | undefined): arch => {
     if (targetArch === undefined) {
       return "x64";
     }
@@ -119,7 +119,7 @@ async function packageApp(): Promise<void> {
     );
   };
 
-  const options: packager.Options = {
+  const options: Options = {
     overwrite: true,
     platform: toPackagePlatform(process.platform),
     arch: toPackageArch(process.env.TARGET_ARCH),
