@@ -1,5 +1,5 @@
 import express from "express";
-import webpack from "webpack";
+import webpack, { Output } from "webpack";
 import webpackDevMiddleware from "webpack-dev-middleware";
 import webpackHotMiddleware from "webpack-hot-middleware";
 import configs from "../app/webpack.development";
@@ -26,11 +26,12 @@ if (process.env.NODE_ENV === "production") {
 
   const server = express();
   const compiler = webpack(developmentRenderConfig);
-  const port = Number.parseInt(process.env.PORT!) || 3000;
+  const port = Number.parseInt(process.env.PORT as string) || 3000;
 
   server.use(
     webpackDevMiddleware(compiler, {
-      publicPath: developmentRenderConfig!.output!.publicPath!,
+      publicPath: (developmentRenderConfig.output as Output)
+        .publicPath as string,
     })
   );
 

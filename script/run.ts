@@ -1,4 +1,4 @@
-import { ChildProcess, spawn, SpawnOptions } from "child_process";
+import child_process, { ChildProcess, SpawnOptions } from "child_process";
 import fs from "fs";
 import path from "path";
 import { getDistPath } from "./dist-info";
@@ -33,5 +33,5 @@ export function run(spawnOptions: SpawnOptions): ChildProcess | null {
     NODE_ENV: "development",
   });
 
-  return spawn(binaryPath, [], options);
+  return child_process.spawn(binaryPath, [], options);
 }

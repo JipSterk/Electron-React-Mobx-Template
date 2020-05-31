@@ -2,6 +2,7 @@ import child_process from "child_process";
 import packager, { arch, Options } from "electron-packager";
 import fs from "fs-extra";
 import path from "path";
+import { getBundleID } from "../app/package-info";
 import { externals } from "../app/webpack.common";
 import { getDistRoot } from "./dist-info";
 
@@ -117,15 +118,16 @@ async function packageApp(): Promise<void> {
     overwrite: true,
     platform: toPackagePlatform(process.platform),
     arch: toPackageArch(process.env.TARGET_ARCH),
-    prune: false,
     out: getDistRoot(),
     dir: outRoot,
+    prune: false,
     ignore: [
       new RegExp("/node_modules/electron($|/)"),
       new RegExp("/node_modules/electron-packager($|/)"),
       new RegExp("/\\.git($|/)"),
       new RegExp("/node_modules/\\.bin($|/)"),
     ],
+    appBundleId: getBundleID(),
   };
 
   try {

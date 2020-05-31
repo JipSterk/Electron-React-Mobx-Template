@@ -1,4 +1,4 @@
-import { spawnSync, SpawnSyncOptions } from "child_process";
+import child_process, { SpawnSyncOptions } from "child_process";
 import path from "path";
 
 const root = path.dirname(__dirname);
@@ -8,7 +8,7 @@ const options: SpawnSyncOptions = {
   stdio: "inherit",
 };
 
-const result = spawnSync(
+const result = child_process.spawnSync(
   "yarn",
   ["--cwd", "app", "install", "--force"],
   options
