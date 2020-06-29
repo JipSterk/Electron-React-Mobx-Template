@@ -1,5 +1,5 @@
 import child_process from "child_process";
-import packager, { arch, Options } from "electron-packager";
+import packager, { Options, TargetArch } from "electron-packager";
 import fs from "fs-extra";
 import path from "path";
 import { getBundleID } from "../app/package-info";
@@ -100,7 +100,7 @@ async function packageApp(): Promise<void> {
     );
   };
 
-  const toPackageArch = (targetArch: string | undefined): arch => {
+  const toPackageArch = (targetArch: string | undefined): TargetArch => {
     if (targetArch === undefined) {
       return "x64";
     }

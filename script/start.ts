@@ -11,7 +11,6 @@ function startApp(): void {
   if (!runningApp) {
     console.log("Couldn't launch app. Try building it");
     process.exit(1);
-    return;
   }
 
   runningApp.on("close", (): void => {
@@ -22,7 +21,7 @@ function startApp(): void {
 if (process.env.NODE_ENV === "production") {
   startApp();
 } else {
-  const developmentRenderConfig = configs[1];
+  const [, developmentRenderConfig] = configs;
 
   const server = express();
   const compiler = webpack(developmentRenderConfig);
@@ -41,7 +40,6 @@ if (process.env.NODE_ENV === "production") {
     if (error) {
       console.log(error);
       process.exit(1);
-      return;
     }
 
     console.log(`Server running at http://localhost:${port}`);
