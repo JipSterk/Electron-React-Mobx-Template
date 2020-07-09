@@ -2,7 +2,7 @@ import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import path from "path";
 import { Configuration } from "webpack";
-import merge from "webpack-merge";
+import { merge } from "webpack-merge";
 
 const outputDir: string = "out";
 export const externals: string[] = ["7zip"];

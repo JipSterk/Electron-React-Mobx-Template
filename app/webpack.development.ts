@@ -1,5 +1,5 @@
 import { Configuration, Entry, HotModuleReplacementPlugin } from "webpack";
-import webpackMerge from "webpack-merge";
+import { merge } from "webpack-merge";
 import { commonMainConfig, commonRenderConfig } from "./webpack.common";
 
 const config: Configuration = {
@@ -7,9 +7,9 @@ const config: Configuration = {
   devtool: "source-map",
 };
 
-const developmentMainConfig = webpackMerge(config, commonMainConfig, {});
+const developmentMainConfig = merge(config, commonMainConfig, {});
 
-const developmentRenderConfig = webpackMerge(config, commonRenderConfig, {
+const developmentRenderConfig = merge(config, commonRenderConfig, {
   entry: {
     renderer: [
       "webpack-hot-middleware/client?path=http://localhost:3000/__webpack_hmr",
