@@ -1,6 +1,6 @@
 import MiniCSSExtractPlugin, { loader } from "mini-css-extract-plugin";
 import { Configuration } from "webpack";
-import webpackMerge from "webpack-merge";
+import { merge } from "webpack-merge";
 import { commonMainConfig, commonRenderConfig } from "./webpack.common";
 
 const config: Configuration = {
@@ -8,9 +8,9 @@ const config: Configuration = {
   devtool: "source-map",
 };
 
-const productionMainConfig = webpackMerge(config, commonMainConfig, {});
+const productionMainConfig = merge(config, commonMainConfig, {});
 
-const productionRenderConfig = webpackMerge(config, commonRenderConfig, {
+const productionRenderConfig = merge(config, commonRenderConfig, {
   module: {
     rules: [
       {
