@@ -27,11 +27,15 @@ export function run(spawnOptions: SpawnOptions): ChildProcess | null {
     return null;
   }
 
-  const options = Object.assign({}, spawnOptions);
+  const options = {
+    ...spawnOptions,
+  };
 
-  options.env = Object.assign(options.env || {}, process.env, {
+  options.env = {
+    ...(options.env ?? {}),
+    ...process.env,
     NODE_ENV: "development",
-  });
+  };
 
   return child_process.spawn(binaryPath, [], options);
 }

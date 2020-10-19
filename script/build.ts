@@ -13,7 +13,7 @@ type PackageLookup = {
 type Package = {
   productName: string;
   dependencies: PackageLookup;
-  devDependencies: PackageLookup;
+  devDependencies?: PackageLookup;
 };
 
 const isPublishableBuild = process.env.NODE_ENV !== "development";
@@ -42,7 +42,8 @@ function copyDependencies(): void {
     }
   }
 
-  const oldDevDependencies: PackageLookup = originalPackage.devDependencies;
+  const oldDevDependencies: PackageLookup =
+    originalPackage.devDependencies ?? {};
   const newDevDependencies: PackageLookup = {};
 
   if (!isPublishableBuild) {
@@ -54,11 +55,12 @@ function copyDependencies(): void {
     }
   }
 
-  const updatedPackage: Package = Object.assign({}, originalPackage, {
+  const updatedPackage: Package = {
+    ...originalPackage,
     productName: "electronreactmobxtemplate",
     dependencies: newDependencies,
     devDependencies: newDevDependencies,
-  });
+  };
 
   if (isPublishableBuild) {
     delete updatedPackage.devDependencies;
