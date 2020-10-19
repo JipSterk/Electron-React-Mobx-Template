@@ -42,7 +42,8 @@ function copyDependencies(): void {
     }
   }
 
-  const oldDevDependencies: PackageLookup = originalPackage.devDependencies;
+  const oldDevDependencies: PackageLookup =
+    originalPackage.devDependencies ?? {};
   const newDevDependencies: PackageLookup = {};
 
   if (!isPublishableBuild) {
