@@ -12,7 +12,7 @@ if (process.env.NODE_ENV === "development") {
 }
 
 const commonConfig: Configuration = {
-  externals: externals,
+  externals,
   output: {
     path: path.resolve(__dirname, "..", outputDir),
     filename: "[name].js",

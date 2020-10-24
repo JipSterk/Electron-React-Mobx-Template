@@ -7,9 +7,9 @@ const config: Configuration = {
   devtool: "source-map",
 };
 
-const developmentMainConfig = merge(config, commonMainConfig, {});
+const mainConfig = merge(config, commonMainConfig, {});
 
-const developmentRenderConfig = merge(config, commonRenderConfig, {
+const rendererConfig = merge(config, commonRenderConfig, {
   entry: {
     renderer: [
       "webpack-hot-middleware/client?path=http://localhost:3000/__webpack_hmr",
@@ -22,7 +22,7 @@ const developmentRenderConfig = merge(config, commonRenderConfig, {
   module: {
     rules: [
       {
-        test: /\.scss$/,
+        test: /\.(scss|css)$/,
         use: ["style-loader", "css-loader?sourceMap", "sass-loader?sourceMap"],
       },
     ],
@@ -30,4 +30,4 @@ const developmentRenderConfig = merge(config, commonRenderConfig, {
   plugins: [new HotModuleReplacementPlugin()],
 });
 
-export = [developmentMainConfig, developmentRenderConfig];
+export default [mainConfig, rendererConfig];
