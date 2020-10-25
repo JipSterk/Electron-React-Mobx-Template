@@ -8,22 +8,22 @@ const config: Configuration = {
   devtool: "source-map",
 };
 
-const productionMainConfig = merge(config, commonMainConfig, {});
+const mainConfig = merge(config, commonMainConfig, {});
 
-const productionRenderConfig = merge(config, commonRenderConfig, {
+const rendererConfig = merge(config, commonRenderConfig, {
   module: {
     rules: [
       {
-        test: /\.scss$/,
+        test: /\.(scss|css)$/,
         use: [loader, "css-loader", "sass-loader"],
       },
     ],
   },
   plugins: [
     new MiniCSSExtractPlugin({
-      filename: "[name].css",
+      filename: "renderer.css",
     }),
   ],
 });
 
-export = [productionMainConfig, productionRenderConfig];
+export default [mainConfig, rendererConfig];
