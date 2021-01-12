@@ -131,13 +131,6 @@
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.6.tgz#f4c7ec43e81b319a9815115031709f26987891f0"
   integrity sha512-3c+yGKvVP5Y9TYBEibGNR+kLtijnj7mYrXRg+WpFb2X9xm04g/DXYkfg4hmzJQosc9snFNUPkbYIhu+KAm6jJw==
 
-"@types/memory-fs@*":
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/@types/memory-fs/-/memory-fs-0.3.2.tgz#5d4753f9b390cb077c8c8af97bc96463399ceccd"
-  integrity sha512-j5AcZo7dbMxHoOimcHEIh0JZe5e1b8q8AqGSpZJrYc7xOgCIP79cIjTdx5jSDLtySnQDwkDTqwlC7Xw7uXw7qg==
-  dependencies:
-    "@types/node" "*"
-
 "@types/mime@*":
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/@types/mime/-/mime-2.0.3.tgz#c893b73721db73699943bfc3653b1deb7faa4a3a"
@@ -225,15 +218,13 @@
   dependencies:
     source-map "^0.6.1"
 
-"@types/webpack-dev-middleware@3.7.2":
-  version "3.7.2"
-  resolved "https://registry.yarnpkg.com/@types/webpack-dev-middleware/-/webpack-dev-middleware-3.7.2.tgz#31030c7cca7f98d56debfd859bb57f9040f0d3c5"
-  integrity sha512-PvETiS//pjVZBK48aJfbxzT7+9LIxanbnk9eXXYUfefGyPdsCkNrMDxRlOVrBvxukXUhD5B6N/pkPMdWrtuFkA==
+"@types/webpack-dev-middleware@4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@types/webpack-dev-middleware/-/webpack-dev-middleware-4.0.0.tgz#f7dd2f96958b8eda1f2c200e107a1e08d7dedce1"
+  integrity sha512-juU3JrpcKJrthLv+BHG1x9oxX4cKKz81Ne49NoswIT6Aal5LY5NKX4KsXOlNZ3rkJIS+aAOEy4zhyaVbaGP0Zw==
   dependencies:
     "@types/connect" "*"
-    "@types/memory-fs" "*"
     "@types/webpack" "*"
-    loglevel "^1.6.2"
 
 "@types/webpack-hot-middleware@2.25.3":
   version "2.25.3"
@@ -3292,11 +3283,6 @@ log-symbols@^2.1.0:
   integrity sha512-VeIAFslyIerEJLXHziedo2basKbMKtTw3vfn5IzG0XTjhAVEJyNHnL2p7vc+wBDSdQuUpNw3M2u6xb9QsAY5Eg==
   dependencies:
     chalk "^2.0.1"
-
-loglevel@^1.6.2:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/loglevel/-/loglevel-1.7.0.tgz#728166855a740d59d38db01cf46f042caa041bb0"
-  integrity sha512-i2sY04nal5jDcagM3FMfG++T69GEEM8CYuOfeOIvmXzOIcwE9a/CJPR0MFM97pYMj/u10lzz7/zd7+qwhrBTqQ==
 
 loglevelnext@^1.0.1:
   version "1.0.5"
