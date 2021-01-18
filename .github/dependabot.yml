@@ -6,9 +6,3 @@ updates:
       interval: "daily"
     rebase-strategy: "auto"
     open-pull-requests-limit: 99
-  - package-ecosystem: "github-actions"
-    directory: "/"
-    schedule:
-      interval: "daily"
-    rebase-strategy: "auto"
-    open-pull-requests-limit: 99
