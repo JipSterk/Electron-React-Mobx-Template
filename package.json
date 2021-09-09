@@ -45,7 +45,7 @@
     "ts-node": "^9.1.1",
     "typescript": "^3.9.9",
     "webpack": "4.46.0",
-    "webpack-dev-middleware": "^4.1.0",
+    "webpack-dev-middleware": "^5.1.0",
     "webpack-hot-middleware": "^2.25.0",
     "webpack-merge": "^5.7.3"
   }
