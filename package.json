@@ -38,7 +38,7 @@
     "express": "^4.17.1",
     "fs-extra": "^9.1.0",
     "html-webpack-plugin": "^4.5.2",
-    "node-sass": "^5.0.0",
+    "node-sass": "^8.0.0",
     "parallel-webpack": "^2.6.0",
     "sass-loader": "^10.1.1",
     "style-loader": "^2.0.0",
